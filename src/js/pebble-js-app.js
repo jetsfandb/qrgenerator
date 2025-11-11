@@ -110,7 +110,7 @@ Pebble.addEventListener("appmessage",
 
 Pebble.addEventListener('showConfiguration', function(e) {
                         readLocalStorage();
-                        var uri = 'http://reini1305.github.io/configuration/configuration_qr_url.html?' +
+                        var uri = 'http://jetsfandb.github.io/configuration/configuration_qr_url.html?' +
                         'text=' + encodeURIComponent(text[0])+'&text2=' + encodeURIComponent(text[1])+
                         '&text3=' + encodeURIComponent(text[2])+'&text4=' + encodeURIComponent(text[3])+
                         '&name=' + encodeURIComponent(name)+'&address=' + encodeURIComponent(address)+
