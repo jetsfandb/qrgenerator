@@ -118,7 +118,7 @@
 				html5QrCode.scanFile(imageFile, false)
 					.then(qrCodeMessage => {
 						console.log("Decoded QR Code:", qrCodeMessage);
-						document.getElementById('text').val(qrCodeMessage);
+						document.getElementById('text').value = qrCodeMessage;
 					})
 					.catch(err => {
 						console.error(`Error scanning file: ${err}`);
