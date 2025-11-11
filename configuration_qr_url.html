@@ -83,6 +83,15 @@
 				</div>
 
       </div>
+	        <div class="ui-body ui-corner-all" data-role='collapsible'>
+      		<h3>From QR Image file</h3>
+				<div id="reader" style="width: 500px;"></div>
+				<label for="file">Select an image with a QR Code:</label>
+				<input type="file" id="qrCodeFile" accept="image/*">
+				<div data-role="fieldcontain">
+					<input type="hidden" name="text" id="text" value="" />
+				</div>
+      </div>
       <div class="ui-body ui-corner-all" data-role='collapsible'>
       <h3>Donation</h3>
       If you like this app consider a small donation: <a href='https://pledgie.com/campaigns/28156'><img alt='Click here to lend your support to: Christian Reinbachers Pebble Apps and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/28156.png?skin_name=chrome' border='0' ></a>
@@ -93,10 +102,27 @@
 						<div class='ui-block-b'><button type='submit' data-theme='a' id='b-submit'>Submit</button></div>
 					</fieldset>
 				</div>
-
 			</div>
 		</div>
 		<script>
+			const html5QrCode = new Html5Qrcode("reader");
+			const fileInput = document.getElementById('qrCodeFile');
+
+			fileInput.addEventListener('change', (e) => {
+				if (e.target.files.length === 0) {
+					return;
+				}
+				const imageFile = e.target.files[0];
+
+				html5QrCode.scanFile(imageFile, false)
+					.then(qrCodeMessage => {
+						console.log("Decoded QR Code:", qrCodeMessage);
+						document.getElementById('text').val(qrCodeMessage);
+					})
+					.catch(err => {
+						console.error(`Error scanning file: ${err}`);
+					});
+			});			
 			function getQueryVariable(variable) {
 				var query = location.search.substring(1);
 				var vars = query.split('&');
